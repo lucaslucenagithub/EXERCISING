@@ -12,46 +12,35 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System;
 
-//NOT FINISHED YET
 class Solution
 {
     // Complete the hourglassSum function below.
     static int hourglassSum(int[][] arr)
     {
-        var hourGlasses = new int[16][];
         var hourGlassesSum = new int[16];
 
-        for (int i = 0; i < hourGlasses.Count(); i++)
+        var hourGlassesCompleted = 0;
+        for (int totalHourGlasses = 0; hourGlassesCompleted < 16; totalHourGlasses++)
         {
-            hourGlasses[i] = new int[7]; 
-        }
-
-        for (int i = 0; i < 16; i++)
-        {
-            var hourglassPosition = 0;
-
-            for (int top = 0; top < 3; top++)
+            for (int sequencePerRow = 0; sequencePerRow < 4; sequencePerRow++)
             {
-                hourGlasses[i][hourglassPosition] = arr[i][i + top];
-                ++hourglassPosition;
+                for (int top = 0; top < 3; top++)
+                {
+                    hourGlassesSum[hourGlassesCompleted + sequencePerRow] += arr[totalHourGlasses][sequencePerRow + top];
+                }
+
+                for (int mid = 1; mid < 2; mid++)
+                {
+                    hourGlassesSum[hourGlassesCompleted + sequencePerRow] += arr[totalHourGlasses + 1][sequencePerRow + mid];
+                }
+
+                for (int bottom = 0; bottom < 3; bottom++)
+                {
+                    hourGlassesSum[hourGlassesCompleted + sequencePerRow] += arr[totalHourGlasses + 2][sequencePerRow + bottom];
+                }
             }
 
-            for (int mid = 1; mid < 2; mid++)
-            {
-                hourGlasses[i][hourglassPosition] = arr[i + 1][i + mid];
-                ++hourglassPosition;
-            }
-
-            for (int bottom = 0; bottom < 3; bottom++)
-            {
-                hourGlasses[i][hourglassPosition] = arr[i + 2][i + bottom];
-                ++hourglassPosition;
-            }
-        }
-
-        for (int i = 0; i < hourGlasses.Count(); i++)
-        {
-            hourGlassesSum[i] = hourGlasses[i].Sum();
+            hourGlassesCompleted += 4;
         }
 
         return hourGlassesSum.Max();
