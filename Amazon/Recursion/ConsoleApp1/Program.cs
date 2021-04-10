@@ -12,9 +12,13 @@ namespace ConsoleApp1
 
         private static int fibonacci(int position)
         {
-            if (position == 1 || position == 2) { return 1; }
-            var positionValue = fibonacci(position - 1) + fibonacci(position - 2);
-            return positionValue;
+            if (position >= 3) 
+            { 
+                var positionValue = fibonacci(position - 1) + fibonacci(position - 2); 
+                return positionValue; 
+            }
+
+            return 1;
         }
 
         static void Main(string[] args)
