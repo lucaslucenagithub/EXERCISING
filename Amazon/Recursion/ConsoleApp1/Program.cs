@@ -12,10 +12,10 @@ namespace ConsoleApp1
 
         private static int fibonacci(int position)
         {
-            if (position >= 3) 
-            { 
-                var positionValue = fibonacci(position - 1) + fibonacci(position - 2); 
-                return positionValue; 
+            if (position >= 3)
+            {
+                var positionValue = fibonacci(position - 1) + fibonacci(position - 2);
+                return positionValue;
             }
 
             return 1;
@@ -23,8 +23,8 @@ namespace ConsoleApp1
 
         private static int frogways(int feet)
         {
-            if(feet == 3) { return frogways(feet - 1) + 1; }
-            else if(feet > 3) { return frogways(feet - 1) + frogways(feet - 2); }
+            if (feet > 3) { return frogways(feet - 1) + frogways(feet - 2); }
+            else if(feet == 3) { return 3; }
             else return 2;
         }
 
