@@ -21,10 +21,18 @@ namespace ConsoleApp1
             return 1;
         }
 
+        private static int frogways(int feet)
+        {
+            if(feet == 3) { return frogways(feet - 1) + 1; }
+            else if(feet > 3) { return frogways(feet - 1) + frogways(feet - 2); }
+            else return 2;
+        }
+
         static void Main(string[] args)
         {
             //var result = factorial(4);
-            var result = fibonacci(8);
+            //var result = fibonacci(8);
+            var result = frogways(3);
             Console.WriteLine(result);
             Console.ReadKey();
         }
