@@ -63,7 +63,7 @@ class Solution
 {
     public static void Main(string[] args)
     {
-        TextWriter textWriter = new StreamWriter(@"TESTE", true);
+        TextWriter textWriter = new StreamWriter(@"TESTE1", true);
 
         string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');
 
