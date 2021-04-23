@@ -22,34 +22,64 @@ class Result
      *
      * The function is expected to return an INTEGER.
      * The function accepts 2D_INTEGER_ARRAY area as parameter.
+     * 
+     * O(area * area[i])
      */
 
-    public static int minimumDistance(List<List<int>> area)
+    public static int minimumDistanceBruteForceNotWorking(List<List<int>> area)
     {
         int result = 0;
+        bool endPointReached = false;
 
         for (int i = 0; i < area.Count; i++)
         {
-            for (int j = 0; j < area[i].Count; j++)
+            var currentArea = area[i];
+
+            for (int j = 0; j < currentArea.Count; j++)
             {
-                if (area[i][j] == 1 && area[i][j + 1] == 0)
+                if (i == 0 && j == 0)
+                {
+                    continue;
+                }
+
+                if (currentArea[j] == 0)
+                {
+                    if (currentArea[j + 1] != 0) break;
+
+                    continue;
+                }
+
+                if (currentArea[j] == 1)
                 {
                     result += 1;
-                    break;
+                    continue;
                 }
-                else if (area[i][j] == 1 && area[i][j + 1] == 9)
+
+                if (currentArea[j] == 9)
                 {
                     result += 1;
+                    endPointReached = true;
                     break;
-                }
-                else
-                {
-                    result += 2;
                 }
             }
+
+            if (currentArea.Contains(9) && result > 0) break;
+
+            if (!endPointReached && i == area.Count - 1) i = -1;
         }
 
         return result;
+    }
+
+    /*
+     * Complete the 'minimumDistance' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts 2D_INTEGER_ARRAY area as parameter.
+     */
+    public static int minimumDistanceOptimized(List<List<int>> area)
+    {
+       
     }
 
 }
@@ -70,7 +100,7 @@ class Solution
             area.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(areaTemp => Convert.ToInt32(areaTemp)).ToList());
         }
 
-        int result = Result.minimumDistance(area);
+        int result = Result.minimumDistanceOptimized(area);
 
         textWriter.WriteLine(result);
 
